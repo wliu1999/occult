@@ -1,0 +1,46 @@
+using UnityEngine;
+
+public class CardDragAndTilt : MonoBehaviour
+{
+    private bool isDragging = false;
+    private bool isTiltLocked = false;
+    private float initialDragPosX;
+    private float maxTiltThreshold = 50f; // Adjust as needed
+
+    private void OnMouseDown()
+    {
+        isDragging = true;
+        initialDragPosX = Input.mousePosition.x;
+    }
+
+    private void OnMouseDrag()
+    {
+        if (isDragging && !isTiltLocked)
+        {
+            float dragDelta = Input.mousePosition.x - initialDragPosX;
+            float tiltAngle = Mathf.Clamp(dragDelta, -maxTiltThreshold, maxTiltThreshold);
+
+            // Apply tilt rotation
+            transform.rotation = Quaternion.Euler(0f, 0f, -tiltAngle);
+        }
+    }
+
+    private void OnMouseUp()
+    {
+        if (isDragging)
+        {
+            isDragging = false;
+            
+            if (Mathf.Abs(transform.rotation.eulerAngles.z) >= maxTiltThreshold)
+            {
+                // Lock the tilt
+                isTiltLocked = true;
+            }
+            else
+            {
+                // Reset the tilt
+                transform.rotation = Quaternion.identity;
+            }
+        }
+    }
+}
