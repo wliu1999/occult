@@ -9,24 +9,37 @@ public class gameManager : MonoBehaviour
     public GameObject card;
     public float fMovingSpeed;
     public GameObject cardA;
-    GameObject nextCard;
+    public GameObject tempCard;
+    int nextCard;
 
-    // Card management variables
+    // Card physics management variables
     Vector2 position;
     Vector3 rotation;
-    public float maxPosition = 3;
-    public float minPosition = -3;
+    public float maxPosition = 2;
+    public float minPosition = -2;
     public float maxRotation = 30;
     public float minRotation = -30;
 
-    // Card queue system
-    
+    // Card data management variables
+    string[] defaultCard = new string[4] {"default card", "this is a default card", "0", "0"};
+    string[] firstCard = new string[4] {"first card", "left for second, right for third", "2", "3"};
+    string[] secondCard = new string[4] {"second card", "left for fourth, right back to first", "4", "1"};
+    string[] thirdCard = new string[4] {"third card", "left back to second, right for fourth", "2", "4"};
+    string[] fourthCard = new string[4] {"fourth card", "left for third, right back to first", "3", "1"};
+	string[][] cardDatabase;
+
+    public GameObject cardPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Set position and rotation for new card
         position = new Vector2(0, 0);
         rotation = new Vector3(0, 0, 0);
+
+        // Initialize card database to read. (Change this to read from csv later)
+        cardDatabase = new string[][]{defaultCard, firstCard, secondCard, thirdCard, fourthCard};
+        card = spawnCard(1);
     }
 
     // Update is called once per frame
@@ -35,7 +48,7 @@ public class gameManager : MonoBehaviour
         // only track mouse horizontal position
         // make card's position and rotation depend on horizontal position
 
-        if (Input.GetMouseButton(0) && card.GetComponent<cardController>().isMouseOver)
+        if (Input.GetMouseButton(0) && card.GetComponent<cardRenderer>().isMouseOver)
         {
             // Set position based on mouse position, and rotation based on position
             position.x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
@@ -54,31 +67,31 @@ public class gameManager : MonoBehaviour
             {
                 if (position.x >= 2)
                 {
-                    nextCard = card.GetComponent<cardController>().SwipeRight();
+                    nextCard = card.GetComponent<cardRenderer>().SwipeRight();
+                    tempCard = spawnCard(nextCard);
+                    Destroy(card);
+                    card = tempCard;
+                    nextCard = 0;
                 }
                 else if (position.x <= -2)
                 {
-                    nextCard = card.GetComponent<cardController>().SwipeLeft();
-                }
-
-                if (nextCard != null)
-                {
-                    nextCard = Instantiate(nextCard, new Vector3(0, 0, 0), Quaternion.identity);
+                    nextCard = card.GetComponent<cardRenderer>().SwipeLeft();
+                    tempCard = spawnCard(nextCard);
                     Destroy(card);
-                    card = nextCard;
-                    nextCard = null;
-                } else
-                {
-                    nextCard = Instantiate(cardA, new Vector3(0, 0, 0), Quaternion.identity);
-                    Destroy(card);
-                    card = nextCard;
-                    nextCard = null;
+                    card = tempCard;
+                    nextCard = 0;
                 }
-
-
             }
             card.transform.position = Vector2.MoveTowards(card.transform.position, new Vector2(0, 0), fMovingSpeed);
             card.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
     }
+
+    // Method to spawn a new card based on the ID given.
+    public GameObject spawnCard(int ID){
+		GameObject newCard = Instantiate(cardPrefab, GameObject.FindGameObjectWithTag("Canvas").transform);
+        cardRenderer script = newCard.GetComponent<cardRenderer>();
+        script.renderCard(cardDatabase[ID][0], cardDatabase[ID][1], cardDatabase[ID][2], cardDatabase[ID][3]);
+		return newCard;
+	}
 }
