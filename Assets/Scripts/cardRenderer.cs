@@ -35,7 +35,6 @@ public class cardRenderer : MonoBehaviour
     {
         Debug.Log("Swiped Right");
         if (Int32.TryParse(rightCard, out int i)){
-            Debug.Log(i);
             return i;
         } else 
         {
@@ -48,7 +47,6 @@ public class cardRenderer : MonoBehaviour
     {
         Debug.Log("Swiped Left");
         if (Int32.TryParse(leftCard, out int i)){
-            Debug.Log(i);
             return i;
         } else 
         {
@@ -63,7 +61,10 @@ public class cardRenderer : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             this.transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
-            Debug.Log("Make big");
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            this.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
         }
     }
 

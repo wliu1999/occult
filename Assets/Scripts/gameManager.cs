@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.IO;
 
 public class gameManager : MonoBehaviour
 {
@@ -20,15 +21,8 @@ public class gameManager : MonoBehaviour
     public float maxRotation = 30;
     public float minRotation = -30;
 
-    // Card data management variables
-    string[] defaultCard = new string[4] {"default card", "this is a default card", "0", "0"};
-    string[] firstCard = new string[4] {"first card", "left for second, right for third", "2", "3"};
-    string[] secondCard = new string[4] {"second card", "left for fourth, right back to first", "4", "1"};
-    string[] thirdCard = new string[4] {"third card", "left back to second, right for fourth", "2", "4"};
-    string[] fourthCard = new string[4] {"fourth card", "left for third, right back to first", "3", "1"};
-	string[][] cardDatabase;
-
     public GameObject cardPrefab;
+    string[][] cardDatabase;
 
     // Start is called before the first frame update
     void Start()
@@ -37,9 +31,24 @@ public class gameManager : MonoBehaviour
         position = new Vector2(0, 0);
         rotation = new Vector3(0, 0, 0);
 
-        // Initialize card database to read. (Change this to read from csv later)
-        cardDatabase = new string[][]{defaultCard, firstCard, secondCard, thirdCard, fourthCard};
+        // Initialize card database to read. Now reads from TSV!
+        // Note that we're reading from TSV, not CSV. This is because I was too lazy to find a workaround for all the commas in the scripts, 
+        // and we should never have tab values in cards anyways. Therefore, TSV superior hahaha.
+        var filePath = "Assets/Cards/Test Scenario.tsv";
+        string[] lines = File.ReadAllLines(filePath);
+        cardDatabase = new string[lines.Length][];
+
+        // This loop reads the TSV and translates each line into an array that represents a card.
+        // Line 53 has the i value offset by 1 to ignore the header.
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string[] newCard = lines[i].Split('\t');
+            cardDatabase[i-1] = newCard;
+        }
+        string result = string.Join(", ", cardDatabase[1]);
+
         card = spawnCard(1);
+        Debug.Log(result);
     }
 
     // Update is called once per frame
@@ -91,7 +100,7 @@ public class gameManager : MonoBehaviour
     public GameObject spawnCard(int ID){
 		GameObject newCard = Instantiate(cardPrefab, GameObject.FindGameObjectWithTag("Canvas").transform);
         cardRenderer script = newCard.GetComponent<cardRenderer>();
-        script.renderCard(cardDatabase[ID][0], cardDatabase[ID][1], cardDatabase[ID][2], cardDatabase[ID][3]);
+        script.renderCard(cardDatabase[ID][1], cardDatabase[ID][2], cardDatabase[ID][3], cardDatabase[ID][4]);
 		return newCard;
 	}
 }
