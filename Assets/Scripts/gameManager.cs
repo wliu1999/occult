@@ -16,13 +16,18 @@ public class gameManager : MonoBehaviour
     // Card physics management variables
     Vector2 position;
     Vector3 rotation;
-    public float maxPosition = 2;
-    public float minPosition = -2;
+    public float maxPosition = 3;
+    public float minPosition = -3;
     public float maxRotation = 30;
     public float minRotation = -30;
 
+    // Card management variables
     public GameObject cardPrefab;
     string[][] cardDatabase;
+
+    // Hover text variables
+    public TMP_Text leftHoverText;
+    public TMP_Text rightHoverText;
 
     // Start is called before the first frame update
     void Start()
@@ -45,10 +50,8 @@ public class gameManager : MonoBehaviour
             string[] newCard = lines[i].Split('\t');
             cardDatabase[i-1] = newCard;
         }
-        string result = string.Join(", ", cardDatabase[1]);
 
         card = spawnCard(1);
-        Debug.Log(result);
     }
 
     // Update is called once per frame
@@ -57,9 +60,12 @@ public class gameManager : MonoBehaviour
         // only track mouse horizontal position
         // make card's position and rotation depend on horizontal position
 
-        if (Input.GetMouseButton(0) && card.GetComponent<cardRenderer>().isMouseOver)
+        if (Input.GetMouseButton(0))
+        //&& card.GetComponent<cardRenderer>().isMouseOver
         {
             // Set position based on mouse position, and rotation based on position
+            // Note: position is currently based on the user's mouse position
+            // To make things visually make more sense, maybe change some of the below appareance functions to change based on the card's position instead
             position.x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
             rotation.z = -position.x * 15;
 
@@ -70,6 +76,32 @@ public class gameManager : MonoBehaviour
             // Visually move the card to the set position and rotation
             card.transform.position = Vector2.MoveTowards(card.transform.position, position, fMovingSpeed);
             card.transform.rotation = Quaternion.Euler(rotation);
+
+            // If the user is moving the card to the right, gradually phase in the right hover text.
+            if (position.x < 0 && position.x > -2)
+            {
+                leftHoverText.faceColor = new Color(0,0,0,-position.x/2);
+            }
+
+            // If the user is moving the card to the left, gradually phase in the left hover text.
+            if (position.x > 0 && position.x < 2)
+            {
+                rightHoverText.faceColor = new Color(0,0,0,position.x/2);
+            }
+
+            // These should change the color when the user is hovering the card past the threshold to swipe. 
+            // For some reason, they're not showing the right color for now. Will have to bugfix later.
+            if (position.x <= -2)
+            {
+                leftHoverText.faceColor = new Color(1,1,1,1);
+            }
+
+            if (position.x >= 2)
+            {
+                rightHoverText.faceColor = new Color(1,1,1,1);
+            }
+
+
         } else {
             // When the user releases the mouse button, run the swipe right or left commands on the card if the position is far enough
             if (Input.GetMouseButtonUp(0))
@@ -93,6 +125,8 @@ public class gameManager : MonoBehaviour
             }
             card.transform.position = Vector2.MoveTowards(card.transform.position, new Vector2(0, 0), fMovingSpeed);
             card.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            leftHoverText.faceColor = new Color(0,0,0,0);
+            rightHoverText.faceColor = new Color(0,0,0,0);
         }
     }
 
@@ -101,6 +135,10 @@ public class gameManager : MonoBehaviour
 		GameObject newCard = Instantiate(cardPrefab, GameObject.FindGameObjectWithTag("Canvas").transform);
         cardRenderer script = newCard.GetComponent<cardRenderer>();
         script.renderCard(cardDatabase[ID][1], cardDatabase[ID][2], cardDatabase[ID][3], cardDatabase[ID][4]);
+        leftHoverText.text = cardDatabase[ID][5];
+        leftHoverText.faceColor = new Color(0,0,0,0);
+        rightHoverText.text = cardDatabase[ID][6];
+        rightHoverText.faceColor = new Color(0,0,0,0);
 		return newCard;
 	}
 }
