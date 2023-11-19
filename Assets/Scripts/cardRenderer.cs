@@ -9,12 +9,13 @@ public class cardRenderer : MonoBehaviour
     //Title and Description
     public TMP_Text title;
     public TMP_Text description;
-    string leftCard = "0";
-    string rightCard = "0";
+    public string leftCard = "0";
+    public string rightCard = "0";
 
     // Utility booleans
     public BoxCollider2D thisCard;
     public bool isMouseOver;
+    public bool isBigger = false;
 
     private void Start()
     {
@@ -33,7 +34,6 @@ public class cardRenderer : MonoBehaviour
 
     public int SwipeRight()
     {
-        Debug.Log("Swiped Right");
         if (Int32.TryParse(rightCard, out int i)){
             return i;
         } else 
@@ -45,7 +45,6 @@ public class cardRenderer : MonoBehaviour
 
     public int SwipeLeft()
     {
-        Debug.Log("Swiped Left");
         if (Int32.TryParse(leftCard, out int i)){
             return i;
         } else 
@@ -58,13 +57,16 @@ public class cardRenderer : MonoBehaviour
     // Make the card bigger when the player clicks on it.
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0) && isMouseOver && !isBigger)
         {
             this.transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
+            isBigger = true;
         }
-        else if (Input.GetMouseButtonUp(0))
+        
+        if (isBigger && (!Input.GetMouseButton(0) || !isMouseOver))
         {
             this.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+            isBigger = false;
         }
     }
 
