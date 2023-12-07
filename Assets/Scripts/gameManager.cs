@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.IO;
+using System;
 
 public class gameManager : MonoBehaviour
 {
@@ -25,12 +26,15 @@ public class gameManager : MonoBehaviour
     // Card management variables
     public GameObject cardPrefab;
     public GameObject spawnArea;
-    public string[,] cardDatabase;
+    string[,] cardDatabase;
+    int cardID = 0;
 
     // Need to convert the TSV into bytes format as that's the only way to register it as a unity object.
     // This is necessary for building, as reading directly from a file isn't possible post build.
     public TextAsset cardTSV;
-    public int cardDataRows = 7;
+
+    // Make sure this number matches the number of data columns per card.
+    int cardDataColumns = 15;
 
     // Hover text variables
     public TMP_Text leftHoverText;
@@ -39,6 +43,13 @@ public class gameManager : MonoBehaviour
     // Vision Sheet
     public GameObject visionSheet;
     public GameObject darkenEffect;
+
+    // KPI Variables
+    int kpi1 = 0, kpi2 = 0, kpi3 = 0, kpi4 = 0;
+    public TMP_Text Kpi1Text;
+    public TMP_Text Kpi2Text;
+    public TMP_Text Kpi3Text;
+    public TMP_Text Kpi4Text;
 
     // Start is called before the first frame update
     void Start()
@@ -66,25 +77,29 @@ public class gameManager : MonoBehaviour
 
         // Set our database size equal to the length of our resulting array divided by the number of rows of data in each card
         // Offset it by 1 to account for the header
-        int databaseSize = splitCards.Length / cardDataRows - 1;
+        int databaseSize = splitCards.Length / cardDataColumns - 1;
 
         // Set the size of cardDatabase 2d array based on above calculations.
-        cardDatabase = new string[databaseSize,cardDataRows];
+        cardDatabase = new string[databaseSize,cardDataColumns];
 
         // Grab the (i+1) value of the splitCards array to account for the header.
         // Populate the cardDatabase array.
         for (int i = 0; i < databaseSize; i++)
         {
-            for(int j = 0; j < cardDataRows; j++)
+            for(int j = 0; j < cardDataColumns; j++)
             {
-                cardDatabase[i,j] = splitCards[((i + 1) * cardDataRows) + j];
+                cardDatabase[i,j] = splitCards[((i + 1) * cardDataColumns) + j];
             }
         }
 
         if (card == null)
         {
+            Debug.Log("SpawnCard");
             card = spawnCard(1);
         }
+
+        // Set KPI default values
+        updateKPI("5", "5", "5", "5");
     }
 
     // Update is called once per frame
@@ -145,19 +160,23 @@ public class gameManager : MonoBehaviour
                 {
                     if (position.x >= maxPosition)
                     {
+                        //Spawn the next card
                         nextCard = card.GetComponent<cardRenderer>().SwipeRight();
                         tempCard = spawnCard(nextCard);
                         Destroy(card);
                         card = tempCard;
                         nextCard = 0;
+                        updateKPI(cardDatabase[cardID, 7], cardDatabase[cardID, 8], cardDatabase[cardID, 9], cardDatabase[cardID, 10]);
                     }
                     else if (position.x <= minPosition)
                     {
+                        //Spawn the next card
                         nextCard = card.GetComponent<cardRenderer>().SwipeLeft();
                         tempCard = spawnCard(nextCard);
                         Destroy(card);
                         card = tempCard;
                         nextCard = 0;
+                        updateKPI(cardDatabase[cardID, 11], cardDatabase[cardID, 12], cardDatabase[cardID, 13], cardDatabase[cardID, 14]);
                     }
                 }
                 card.transform.position = Vector2.MoveTowards(card.transform.position, spawnArea.transform.position, fMovingSpeed);
@@ -184,7 +203,8 @@ public class gameManager : MonoBehaviour
         leftHoverText.faceColor = new Color(0,0,0,0);
         rightHoverText.text = cardDatabase[ID,6];
         rightHoverText.faceColor = new Color(0,0,0,0);
-		return newCard;
+        cardID = ID;
+        return newCard;
 	}
 
     public void pauseGame()
@@ -199,5 +219,51 @@ public class gameManager : MonoBehaviour
         isPaused = false;
         darkenEffect.SetActive(false);
         visionSheet.transform.position = new Vector2(0, 600);
+    }
+
+    public void updateKPI(string one, string two, string three, string four)
+    {
+        // Parse first string into int
+        if (Int32.TryParse(one, out int i))
+        {
+            kpi1 = kpi1 + i;
+        }
+        else
+        {
+            Debug.Log("Could not parse one");
+        }
+        // Parse second string into int
+        if (Int32.TryParse(two, out int j))
+        {
+            kpi2 = kpi2 + j;
+        }
+        else
+        {
+            Debug.Log("Could not parse two");
+        }
+
+        if (Int32.TryParse(three, out int k))
+        {
+            kpi3 = kpi3 + k;
+        }
+        else
+        {
+            Debug.Log("Could not parse three");
+        }
+
+        if (Int32.TryParse(four, out int l))
+        {
+            kpi4 = kpi4 + l;
+        }
+        else
+        {
+            Debug.Log("Could not parse int");
+        }
+        
+        // Update text to reflect actual KPI value;
+        Kpi1Text.text = kpi1.ToString();
+        Kpi2Text.text = kpi2.ToString();
+        Kpi3Text.text = kpi3.ToString();
+        Kpi4Text.text = kpi4.ToString();
     }
 }
