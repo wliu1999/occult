@@ -17,9 +17,13 @@ public class cardRenderer : MonoBehaviour
     public bool isMouseOver;
     public bool isBigger = false;
 
+    // Holder for card image
+    public GameObject cardImage;
+
     private void Start()
     {
         thisCard = gameObject.GetComponent<BoxCollider2D>();
+        cardImage = this.gameObject.transform.GetChild(0).gameObject;
     }
 
     private void OnMouseOver()
@@ -59,13 +63,13 @@ public class cardRenderer : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && isMouseOver && !isBigger)
         {
-            this.transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
+            cardImage.transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
             isBigger = true;
         }
         
         if (isBigger && (!Input.GetMouseButton(0) || !isMouseOver))
         {
-            this.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+            cardImage.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
             isBigger = false;
         }
     }
@@ -76,5 +80,21 @@ public class cardRenderer : MonoBehaviour
         description.SetText(descriptionString);
         rightCard = right;
         leftCard = left;
+    }
+
+    public void updateImagePosition(Vector2 position, Vector3 rotation, float cardSpeed)
+    {
+        cardImage.transform.position = Vector2.MoveTowards(cardImage.transform.position, position, cardSpeed);
+        cardImage.transform.rotation = Quaternion.Euler(rotation);
+    }
+
+    public void updateLeftCard(string newCard)
+    {
+        leftCard = newCard;
+    }
+
+    public void updateRightCard(string newCard)
+    {
+        rightCard = newCard;
     }
 }

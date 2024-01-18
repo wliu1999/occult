@@ -1,0 +1,38 @@
+ID Number	Card Name	Card Text	ID of Left Card	ID of Right Card	Left hover text	Right hover text	KPI 1 Left	KPI 2 Left	KPI 3 Left	KPI 4 Left	KPI 5 Left	KPI 1 Right	KPI 2 Right	KPI 3 Right	KPI 4 Right	KPI 5 Right	Special Left	Special Right
+0	Error Indicator	If you're here, there's been an error.	0	0	Close the game and bugfix genius	Why are you still here?	0	0	0	0	0	0	0	0	0	0	None	None
+1	Welcome, Chosen One!	You have been having weird dreams lately. Dreams of great...	2	5	Mediocrity	Ambition	0	0	0	0	0	0	0	0	0	0	Mediocrity 	Ambition
+2	Welcome, Chosen One!	A normal life. A stable life. One where you can go to the grocery store and buy name-brand cookies without looking at the price tag.	3	3	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+3	Welcome, Chosen One!	A boring life, sure, but you've grown to learn that great ambitions are overrated and the #dream was kind of a big fat lie.	2	4	Back	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+4	Welcome, Chosen One!	Once upon a time, you aspired to be a visionary. Now, you're just trying to find the most boring job you can settle into and survive.	3	8	Back	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+5	Welcome, Chosen One!	You never wanted normal. Your stomach churns and knots at the idea of ever having to lead a "normal" life.	6	6	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+6	Welcome, Chosen One!	Because normal is just a half centimeter away from "nothing", and there's nothing you're more afraid of than being nothing.	5	7	Back	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+7	Welcome, Chosen One!	Life might not always favor the bold, but you know that luck follows those who work hard and try to catch it.	6	8	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+8	Welcome, Chosen One!	But in this unstable economy, it's hard to chase these dreams.	9	9	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+9	Welcome, Chosen One!	Yet, you still dream of them.	8	10	Back	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+10	Welcome, Chosen One!	Until one night, a funny... wait... is that a cat with a mustache?	9	11	Back	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+11	Mr. Bossman	It sure is, toots. I'll take over the narration for now.	10	12	Back	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+12	Mr. Bossman	Howdy, Chosen One! I've been watching you for these past couple of... days? Weeks? Months?	11	13	Back	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+13	Mr. Bossman	Ah, whatever! Time means absolutely nothing when you live between dimensions like I do. 	14	23	Kitty! Who's a pretty kitty?	What the heck are you?	0	0	0	0	0	0	0	0	0	0	None	None
+14	Mr. Bossman	You're lucky I like you, otherwise, I'd turn you into a kitty right now.	15	22	But, YOU'RE a pretty kitty!	So, you don't want to be called a kitty?	0	0	0	0	0	0	0	0	0	0	None	None
+15	Mr. Bossman	Call me a pretty kitty, one more time...	16	21	COME HERE, KITTY!	Okay, okay, I'll stop.	0	0	0	0	0	0	0	0	0	0	Dead	None
+16	Narrator	Just as you're about to give the, uh, "kitty" a hug, the "kitty" morphs into a creature far beyond your comprehension.	17	17			0	0	0	0	0	0	0	0	0	0	None	None
+17	Narrator	The eyes. The wings. The FLAMING FORKED TONGUE. THE GLITCHING EYES AND THE FIERY ABYSS OF ITS ESOPHAGUS!	18	18			0	0	0	0	0	0	0	0	0	0	None	None
+18	Narrator	Whether or not you're turned into a kitty or not, you don't know.	19	19			0	0	0	0	0	0	0	0	0	0	Glitch	Glitch
+19	Narrator	All you know is (glitch words here)	20	20			0	0	0	0	0	0	0	0	0	0	None	None
+20	HIDDEN ENDING #1	Congrats, didn't even make it out of the prologue.					0	0	0	0	0	0	0	0	0	0	Main Menu	Main Menu
+21	Mr. Bossman	Good.	24	24	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+22	Mr. Bossman	No, I don't.	24	24	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+23	Mr. Bossman	Ha! Straight to the point, that's what I like about you.	24	24	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+24	Mr. Bossman	Listen, I've been watching you, kid, and I gotta say; there's a spark in you that really intrigues me.	25	25	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+25	Mr. Bossman	And when someone intrigues me, I got an offer for them that I know they can't resist.	24	26	Back	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+26	Mr. Bossman	You see, I'm what you would call... a deity.	27	28	So, you're God?	Aren't you a trans-dimensional being?	0	0	0	0	0	0	0	0	0	0	None	None
+27	Mr. Bossman	Aw, you flatter me! I haven't even offered you the job yet, and already, you're worshipping me as your God!	29	29	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+28	Mr. Bossman	Trans-dimentional being, deity, God, benevolent dictator. They're all the same thing, really.	29	29	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+29	Mr. Bossman	Listen, Chosen One. I'm calling you "Chosen One" for a reason. And it's because I chose you to be my emissary.	30	31	Am I selling my soul to you?	Do I get health insurance?	0	0	0	0	0	0	0	0	0	0	None	None
+30	Mr. Bossman	Sell your soul? Bah! I just expect you to come into the office, work a 9-5 job, and oversee some employees who work for me, that's all.	32	32	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+31	Mr. Bossman	Not just health insurance, but a nice fat 401k too, if you make me happy by coming into the office 9-5 and overseeing some employees who work for me.	32	32	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+32	Mr. Bossman	Easy-peasy work, really. You get paid, get benefits, get to meet some great characters and every week, we get to meet up and see how things are going!	33	34	Sounds suspicious.	Sounds awesome!	0	0	0	0	0	0	0	0	0	0	None	None
+33	Mr. Bossman	Listen, I'm a cat. Look into my big eyes, would I lie about this?	35	35	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+34	Mr. Bossman	Isn't it? I'm kind of jealous. I wish I could be you right now, but I'm not! I'm ME! And I wouldn't trade that in for anything.	35	35	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
+35	Mr. Bossman	You start in the morning. Here's the address to where the company is. Talk to Clippy. She'll get you all set up.	36	36	End	End	0	0	0	0	0	0	0	0	0	0	Day 1	Day 1
+36	Yeehaw	That's all for now! Get outta here.	36	36	End	End	0	0	0	0	0	0	0	0	0	0	None	None
