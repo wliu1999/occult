@@ -12,28 +12,12 @@ public class cardRenderer : MonoBehaviour
     public string leftCard = "0";
     public string rightCard = "0";
 
-    // Utility booleans
-    public BoxCollider2D thisCard;
-    public bool isMouseOver;
-    public bool isBigger = false;
-
     // Holder for card image
     public GameObject cardImage;
 
-    private void Start()
+    private void Awake()
     {
-        thisCard = gameObject.GetComponent<BoxCollider2D>();
         cardImage = this.gameObject.transform.GetChild(0).gameObject;
-    }
-
-    private void OnMouseOver()
-    {
-        isMouseOver = true;
-    }
-
-    private void OnMouseExit()
-    {
-        isMouseOver = false;
     }
 
     public int SwipeRight()
@@ -61,17 +45,7 @@ public class cardRenderer : MonoBehaviour
     // Make the card bigger when the player clicks on it.
     void Update()
     {
-        if (Input.GetMouseButton(0) && isMouseOver && !isBigger)
-        {
-            cardImage.transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
-            isBigger = true;
-        }
-        
-        if (isBigger && (!Input.GetMouseButton(0) || !isMouseOver))
-        {
-            cardImage.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
-            isBigger = false;
-        }
+
     }
 
     public void renderCard(string titleString, string descriptionString, string left, string right)
@@ -82,11 +56,11 @@ public class cardRenderer : MonoBehaviour
         leftCard = left;
     }
 
-    public void updateImagePosition(Vector2 position, Vector3 rotation, float cardSpeed)
-    {
-        cardImage.transform.position = Vector2.MoveTowards(cardImage.transform.position, position, cardSpeed);
-        cardImage.transform.rotation = Quaternion.Euler(rotation);
-    }
+    //public void updateImagePosition(Vector2 position, Vector3 rotation, float cardSpeed)
+    //{
+    //    cardImage.transform.position = Vector2.MoveTowards(cardImage.transform.position, position, cardSpeed);
+    //    cardImage.transform.rotation = Quaternion.Euler(rotation);
+    //}
 
     public void updateLeftCard(string newCard)
     {

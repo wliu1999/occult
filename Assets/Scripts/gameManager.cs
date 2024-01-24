@@ -9,7 +9,7 @@ public class gameManager : MonoBehaviour
 {
     // Utility variables
     public GameObject card = null;
-    public float cardSpeed;
+    float cardSpeed = 3f;
     public GameObject tempCard;
     int nextCard;
     public bool isPaused = false;
@@ -54,14 +54,13 @@ public class gameManager : MonoBehaviour
     // Path chosen
     string path = "none";
 
+    // Store script as variable
+    public ImageRenderer imageRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
         darkenEffect.SetActive(false);
-
-        // Set the card's spawn location to a variable for easy access
-        spawnArea = GameObject.FindGameObjectWithTag("Card Location");
 
         // Set position and rotation for new card
         position = spawnArea.transform.position;
@@ -70,6 +69,7 @@ public class gameManager : MonoBehaviour
         updateCardDatabase();
 
         card = resetCard();
+        imageRenderer = card.transform.GetChild(0).gameObject.GetComponent<ImageRenderer>();
 
         // Set KPI default values
         updateKPI("5", "5", "5", "5", "5");
@@ -82,7 +82,7 @@ public class gameManager : MonoBehaviour
         // make card's position and rotation depend on horizontal position
         if (!isPaused)
         {
-            if (Input.GetMouseButton(0) && card.GetComponent<cardRenderer>().isMouseOver)
+            if (Input.GetMouseButton(0) && imageRenderer.isMouseOver)
             {
                 // Set position based on mouse position, and rotation based on position
                 // Note: position is currently based on the user's mouse position
@@ -91,7 +91,7 @@ public class gameManager : MonoBehaviour
                 rotation.z = -position.x * 5;
 
                 // Clamp the position of the card
-                position.x = Mathf.Clamp(position.x, minPosition, maxPosition);
+                //position.x = Mathf.Clamp(position.x, minPosition, maxPosition);
                 rotation.z = Mathf.Clamp(rotation.z, minRotation, maxRotation);
 
                 // Visually move the card to the set position and rotation
@@ -100,14 +100,14 @@ public class gameManager : MonoBehaviour
                 // If the user is moving the card to the right, gradually phase in the right hover text.
                 if (position.x < 0 && position.x > minPosition)
                 {
-                    leftHoverText.faceColor = new Color(0, 0, 0, position.x / minPosition);
+                    leftHoverText.faceColor = new Color(1, 1, 1, position.x / minPosition);
                     rightHoverText.faceColor = new Color(0, 0, 0, 0);
                 }
 
                 // If the user is moving the card to the left, gradually phase in the left hover text.
                 if (position.x > 0 && position.x < maxPosition)
                 {
-                    rightHoverText.faceColor = new Color(0, 0, 0, position.x / maxPosition);
+                    rightHoverText.faceColor = new Color(1, 1, 1, position.x / maxPosition);
                     leftHoverText.faceColor = new Color(0, 0, 0, 0);
                 }
 
@@ -128,7 +128,7 @@ public class gameManager : MonoBehaviour
             else
             {
                 // When the user releases the mouse button, run the swipe right or left commands on the card if the position is far enough
-                if (Input.GetMouseButtonUp(0) && card.GetComponent<cardRenderer>().isMouseOver)
+                if (Input.GetMouseButtonUp(0) && card.transform.GetChild(0).gameObject.GetComponent<ImageRenderer>().isMouseOver)
                 {
                     // Swipe Left
                     if (position.x <= minPosition)
@@ -145,6 +145,7 @@ public class gameManager : MonoBehaviour
                         tempCard = spawnCard(nextCard);
                         Destroy(card);
                         card = tempCard;
+                        imageRenderer = card.transform.GetChild(0).gameObject.GetComponent<ImageRenderer>();
                         nextCard = 0;
 
                     }
@@ -163,12 +164,15 @@ public class gameManager : MonoBehaviour
                         tempCard = spawnCard(nextCard);
                         Destroy(card);
                         card = tempCard;
+                        imageRenderer = card.transform.GetChild(0).gameObject.GetComponent<ImageRenderer>();
                         nextCard = 0;
                     }
+                } else
+                {
+                    updateCardPosition(spawnArea.transform.position, new Vector3(0, 0, 0));
+                    leftHoverText.faceColor = new Color(0, 0, 0, 0);
+                    rightHoverText.faceColor = new Color(0, 0, 0, 0);
                 }
-                updateCardPosition(spawnArea.transform.position, new Vector3(0, 0, 0));
-                leftHoverText.faceColor = new Color(0, 0, 0, 0);
-                rightHoverText.faceColor = new Color(0, 0, 0, 0);
             }
         }
         else
@@ -258,9 +262,7 @@ public class gameManager : MonoBehaviour
 
     public void updateCardPosition(Vector2 position, Vector3 rotation)
     {
-        //card.transform.position = Vector2.MoveTowards(card.transform.position, position, cardSpeed);
-        //card.transform.rotation = Quaternion.Euler(rotation);
-        card.GetComponent<cardRenderer>().updateImagePosition(position,rotation, cardSpeed);
+        imageRenderer.updateImagePosition(position,rotation, cardSpeed);
     }
 
     public void updateKPI(string one, string two, string three, string four, string five)
