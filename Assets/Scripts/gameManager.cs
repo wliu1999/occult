@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.IO;
 using System;
@@ -9,8 +10,10 @@ public class gameManager : MonoBehaviour
 {
     // Utility variables
     public GameObject card = null;
+    public GameObject cardImage = null;
     float cardSpeed = 3f;
     public GameObject tempCard;
+    public GameObject tempImage;
     int nextCard;
     public bool isPaused = false;
 
@@ -25,6 +28,7 @@ public class gameManager : MonoBehaviour
 
     // Card management variables
     public GameObject cardPrefab;
+    public GameObject cardImagePrefab;
     public GameObject spawnArea;
     string[,] cardDatabase;
     int cardID = 0;
@@ -45,11 +49,11 @@ public class gameManager : MonoBehaviour
     public GameObject darkenEffect;
 
     // KPI Variables
-    int kpi1 = 0, kpi2 = 0, kpi3 = 0, kpi4 = 0, kpi5 = 0;
-    public TMP_Text Kpi1Text;
-    public TMP_Text Kpi2Text;
-    public TMP_Text Kpi3Text;
-    public TMP_Text Kpi4Text;
+    int kpi1 = 0, kpi2 = 0, kpi3 = 0, kpi4 = 0, kpi5 = 0, kpiMax = 10;
+    public Image notoriety;
+    public Image money;
+    public Image weaponry;
+    public Image zeal;
 
     // Path chosen
     string path = "none";
@@ -69,9 +73,10 @@ public class gameManager : MonoBehaviour
         updateCardDatabase();
 
         card = resetCard();
-        imageRenderer = card.transform.GetChild(0).gameObject.GetComponent<ImageRenderer>();
+        cardImage = resetCardImage();
+        imageRenderer = cardImage.GetComponent<ImageRenderer>();
 
-        // Set KPI default values
+        //Set KPI default values
         updateKPI("5", "5", "5", "5", "5");
     }
 
@@ -128,7 +133,7 @@ public class gameManager : MonoBehaviour
             else
             {
                 // When the user releases the mouse button, run the swipe right or left commands on the card if the position is far enough
-                if (Input.GetMouseButtonUp(0) && card.transform.GetChild(0).gameObject.GetComponent<ImageRenderer>().isMouseOver)
+                if (Input.GetMouseButtonUp(0) && imageRenderer.isMouseOver)
                 {
                     // Swipe Left
                     if (position.x <= minPosition)
@@ -145,7 +150,10 @@ public class gameManager : MonoBehaviour
                         tempCard = spawnCard(nextCard);
                         Destroy(card);
                         card = tempCard;
-                        imageRenderer = card.transform.GetChild(0).gameObject.GetComponent<ImageRenderer>();
+                        tempImage = spawnCardImage();
+                        Destroy(cardImage);
+                        cardImage = tempImage;
+                        imageRenderer = cardImage.GetComponent<ImageRenderer>();
                         nextCard = 0;
 
                     }
@@ -164,7 +172,10 @@ public class gameManager : MonoBehaviour
                         tempCard = spawnCard(nextCard);
                         Destroy(card);
                         card = tempCard;
-                        imageRenderer = card.transform.GetChild(0).gameObject.GetComponent<ImageRenderer>();
+                        tempImage = spawnCardImage();
+                        Destroy(cardImage);
+                        cardImage = tempImage;
+                        imageRenderer = cardImage.GetComponent<ImageRenderer>();
                         nextCard = 0;
                     }
                 } else
@@ -223,6 +234,7 @@ public class gameManager : MonoBehaviour
             ID = 0;
         }
 		GameObject newCard = Instantiate(cardPrefab, spawnArea.transform);
+        newCard.transform.position += new Vector3(0, 0, -1);
         cardRenderer script = newCard.GetComponent<cardRenderer>();
         script.renderCard(cardDatabase[ID,1], cardDatabase[ID,2], cardDatabase[ID,3], cardDatabase[ID,4]);
         leftHoverText.text = cardDatabase[ID,5];
@@ -233,9 +245,16 @@ public class gameManager : MonoBehaviour
         return newCard;
 	}
 
+    public GameObject spawnCardImage()
+    {
+        GameObject newCardImage = Instantiate(cardImagePrefab, spawnArea.transform);
+        return newCardImage;
+    }
+
     public GameObject resetCard()
     {
         GameObject newCard = Instantiate(cardPrefab, spawnArea.transform);
+        newCard.transform.position += new Vector3(0, 0, -1);
         cardRenderer script = newCard.GetComponent<cardRenderer>();
         script.renderCard(cardDatabase[1, 1], cardDatabase[1, 2], cardDatabase[1, 3], cardDatabase[1, 4]);
         leftHoverText.text = cardDatabase[1, 5];
@@ -244,6 +263,12 @@ public class gameManager : MonoBehaviour
         rightHoverText.faceColor = new Color(0, 0, 0, 0);
         cardID = 1;
         return newCard;
+    }
+
+    public GameObject resetCardImage()
+    {
+        GameObject newCardImage = Instantiate(cardImagePrefab, spawnArea.transform);
+        return newCardImage;
     }
 
     public void pauseGame()
@@ -267,6 +292,7 @@ public class gameManager : MonoBehaviour
 
     public void updateKPI(string one, string two, string three, string four, string five)
     {
+        float fillAmount;
         // Parse first string into int
         if (Int32.TryParse(one, out int i))
         {
@@ -314,10 +340,17 @@ public class gameManager : MonoBehaviour
         }
 
         // Update text to reflect actual KPI value;
-        Kpi1Text.text = kpi1.ToString();
-        Kpi2Text.text = kpi2.ToString();
-        Kpi3Text.text = kpi3.ToString();
-        Kpi4Text.text = kpi4.ToString();
+        fillAmount = (float)kpi1 / (float)kpiMax;
+        notoriety.fillAmount = fillAmount;
+
+        fillAmount = (float)kpi2 / (float)kpiMax;
+        money.fillAmount = fillAmount;
+
+        fillAmount = (float)kpi3 / (float)kpiMax;
+        weaponry.fillAmount = fillAmount;
+
+        fillAmount = (float)kpi4 / (float)kpiMax;
+        zeal.fillAmount = fillAmount;
     }
 
     public void processSpecial(string special)

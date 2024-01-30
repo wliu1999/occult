@@ -19,13 +19,13 @@ public class ImageRenderer : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && isMouseOver && !isBigger)
         {
-            this.transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
+            this.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
             isBigger = true;
         }
 
         if (isBigger && (!Input.GetMouseButton(0) || !isMouseOver))
         {
-            this.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+            this.transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
             isBigger = false;
         }
     }
@@ -33,7 +33,6 @@ public class ImageRenderer : MonoBehaviour
     private void OnMouseEnter()
     {
         isMouseOver = true;
-        Debug.Log("mouse over");
     }
 
     private void OnMouseExit()

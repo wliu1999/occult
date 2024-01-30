@@ -12,12 +12,8 @@ public class cardRenderer : MonoBehaviour
     public string leftCard = "0";
     public string rightCard = "0";
 
-    // Holder for card image
-    public GameObject cardImage;
-
     private void Awake()
     {
-        cardImage = this.gameObject.transform.GetChild(0).gameObject;
     }
 
     public int SwipeRight()
@@ -55,12 +51,6 @@ public class cardRenderer : MonoBehaviour
         rightCard = right;
         leftCard = left;
     }
-
-    //public void updateImagePosition(Vector2 position, Vector3 rotation, float cardSpeed)
-    //{
-    //    cardImage.transform.position = Vector2.MoveTowards(cardImage.transform.position, position, cardSpeed);
-    //    cardImage.transform.rotation = Quaternion.Euler(rotation);
-    //}
 
     public void updateLeftCard(string newCard)
     {
