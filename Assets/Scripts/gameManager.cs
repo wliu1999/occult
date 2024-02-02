@@ -38,7 +38,7 @@ public class gameManager : MonoBehaviour
     public TextAsset cardTSV;
 
     // Make sure this number matches the number of data columns per card.
-    int cardDataColumns = 19;
+    int cardDataColumns = 20;
 
     // Hover text variables
     public TMP_Text leftHoverText;
@@ -64,7 +64,7 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        darkenEffect.SetActive(false);
+        //darkenEffect.SetActive(false);
 
         // Set position and rotation for new card
         position = spawnArea.transform.position;
@@ -73,8 +73,7 @@ public class gameManager : MonoBehaviour
         updateCardDatabase();
 
         card = resetCard();
-        cardImage = resetCardImage();
-        imageRenderer = cardImage.GetComponent<ImageRenderer>();
+        cardImage = spawnCardImage();
 
         //Set KPI default values
         updateKPI("5", "5", "5", "5", "5");
@@ -153,7 +152,6 @@ public class gameManager : MonoBehaviour
                         tempImage = spawnCardImage();
                         Destroy(cardImage);
                         cardImage = tempImage;
-                        imageRenderer = cardImage.GetComponent<ImageRenderer>();
                         nextCard = 0;
 
                     }
@@ -175,7 +173,6 @@ public class gameManager : MonoBehaviour
                         tempImage = spawnCardImage();
                         Destroy(cardImage);
                         cardImage = tempImage;
-                        imageRenderer = cardImage.GetComponent<ImageRenderer>();
                         nextCard = 0;
                     }
                 } else
@@ -248,6 +245,8 @@ public class gameManager : MonoBehaviour
     public GameObject spawnCardImage()
     {
         GameObject newCardImage = Instantiate(cardImagePrefab, spawnArea.transform);
+        imageRenderer = newCardImage.GetComponent<ImageRenderer>();
+        imageRenderer.updateImage(cardDatabase[cardID, 19]);
         return newCardImage;
     }
 
@@ -263,12 +262,6 @@ public class gameManager : MonoBehaviour
         rightHoverText.faceColor = new Color(0, 0, 0, 0);
         cardID = 1;
         return newCard;
-    }
-
-    public GameObject resetCardImage()
-    {
-        GameObject newCardImage = Instantiate(cardImagePrefab, spawnArea.transform);
-        return newCardImage;
     }
 
     public void pauseGame()
@@ -363,13 +356,13 @@ public class gameManager : MonoBehaviour
             case "Mediocrity": 
             case "Ambition":
                 path = special;
-                Debug.Log("Current path: " + path);
                 break;
             case "Day 1":
                 cardTSV = Resources.Load("Cards/Day 1") as TextAsset;
                 Destroy(card);
                 updateCardDatabase();
                 card = resetCard();
+                darkenEffect.SetActive(false);
                 break;
             case "Check path":
                 if (path == "Mediocrity")

@@ -1,26 +1,27 @@
-ID Number	Card Name	Card Text	ID of Left Card	ID of Right Card	Left hover text	Right hover text	KPI 1 Left	KPI 2 Left	KPI 3 Left	KPI 4 Left	KPI 5 Left	KPI 1 Right	KPI 2 Right	KPI 3 Right	KPI 4 Right	KPI 5 Right	Special Left	Special Right
-0	Error Indicator	If you're here, there's been an error.	0	0	Close the game and bugfix genius	Why are you still here?	0	0	0	0	0	0	0	0	0	0	None	None
-1	Narrator	You go to the address the Mustached Cat sends to you. It's an inconspicuous building in an inconspucuous part of town.	2	2	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
-2	Narrator	Nothing out of the ordinary. Not even when you walk inside to find a bland office lobby.	3	3	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
-3	Narrator	The only thing not bland is the woman with paperclip earrings and a clipboard waiting in said lobby.	4	4	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
-4	Receptionist	There you are. Bossman's new Chosen One. Let's hope you last longer than the last one.	5	10	What happened to the last one?	How long did the last one last?	0	0	0	0	0	0	0	0	0	0	None	None
-5	Receptionist	They didn't know how to balance the scales right.	6	8	Continue	Continue	0	0	0	0	0	0	0	0	0	0	Check path	Check path
-6	Receptionist	They went too easy on the cult. Didn't make quota. Bossman got angry.	7	7	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
-7	Receptionist	In other words, don't be mediocre, and everything will work out fine.	13	13	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
-8	Receptionist	They went too hard on the cult. Made every single quota but when your workers are unhappy, they revolt.	9	9	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
-9	Receptionist	Don't let dreams of greatness blind you from practicality, that's all.	13	13	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
-10	Receptionist	A month. Which is quite a long time, all things considered.	11	12	Continue	Continue	0	0	0	0	0	0	0	0	0	0	Check path	Check path
-11	Receptionist	They were mediocre. Went too easy on the cult and didn't make quotas. Bossman was not happy at all.	13	13	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
-12	Receptionist	They went too hard on the cult and everyone revolted. Greatness is only great if you don't have the people wanting you dead.	13	13	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
-13	Receptionist	The name's Clippy, by the way. I'm your assistant. My job is to help you be the best "Chosen One" you can be.	14	14	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
-14	Clippy	But my bigger job is to make sure this cult doesn't fall apart, got it? You do your job well, and we'll be good friends. Otherwise....	15	15	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
-15	Clippy	Let's just say that despite clashing with the Bossman, he still keeps me around for a reason.	16	17	Best of friends?	You're kinda rude for an assistant.	0	0	0	0	0	0	0	0	0	0	None	None
-16	Clippy	That's up to you.	18	18	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
-17	Clippy	I prefer the term "results-oriented" instead of "rude."	18	18	Continue	Continue	0	0	0	0	0	0	0	0	0	0	Highlight KPI	Highlight KPI
-18	Clippy	Now, here are the KPIs you need to monitor. If any of them hit "0" you're in for a world of trouble.	19	19	Continue	Continue	0	0	0	0	0	0	0	0	0	0	Unhighlight KPI	Unhighlight KPI
-19	Clippy	But while you're monitoring those KPI's, keep in mind what the Bossman wants or doesn't want.	20	20	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
-20	Clippy	Sometimes you need to listen to him and what he wants. Sometimes, you shouldn't. Use your common sense.	21	21	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
-21	Clippy	Speaking of common sense, here's a stack of Requests, Complaints, and Other Cult Things that needs your attention.	22	22	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
-22	Clippy	Remember to budget your KPIs properly. Good luck. I'll be here if you need any help.	23	23	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
-23	Narrator	You don't get a chance to say anything before Clippy sends you to your office with a stack of papers to sort through.	24	24	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None
-24	Narrator	It's your first day as the Chosen One of this... cult? Surely, it can't be too difficult, can it?	25	25	Continue	Continue	0	0	0	0	0	0	0	0	0	0	Day 1 Scenarios	Day 1 Scenarios
+ID Number	Card Name	Card Text	ID of Left Card	ID of Right Card	Left hover text	Right hover text	KPI 1 Left	KPI 2 Left	KPI 3 Left	KPI 4 Left	KPI 5 Left	KPI 1 Right	KPI 2 Right	KPI 3 Right	KPI 4 Right	KPI 5 Right	Special Left	Special Right	Card Art
+0	Error Indicator	If you're here, there's been an error.	0	0	Close the game and bugfix genius	Why are you still here?	0	0	0	0	0	0	0	0	0	0	None	None	None
+1	Start Card	Filler start card	2	2	Start	Card	0	0	0	0	0	0	0	0	0	0	None	None	None
+2	Narrator	You go to the address the Mustached Cat sends to you. It's an inconspicuous building in an inconspucuous part of town.	3	3	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	None
+3	Narrator	Nothing out of the ordinary. Not even when you walk inside to find a bland office lobby.	4	4	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	None
+4	Narrator	The only thing not bland is the woman with paperclip earrings and a clipboard waiting in said lobby.	5	5	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	None
+5	Receptionist	There you are. Bossman's new Chosen One. Let's hope you last longer than the last one.	6	11	What happened to the last one?	How long did the last one last?	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
+6	Receptionist	They didn't know how to balance the scales right.	7	9	Continue	Continue	0	0	0	0	0	0	0	0	0	0	Check path	Check path	Card Art/Clippy PFP
+7	Receptionist	They went too easy on the cult. Didn't make quota. Bossman got angry.	8	8	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
+8	Receptionist	In other words, don't be mediocre, and everything will work out fine.	14	14	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
+9	Receptionist	They went too hard on the cult. Made every single quota but when your workers are unhappy, they revolt.	10	10	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
+10	Receptionist	Don't let dreams of greatness blind you from practicality, that's all.	14	14	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
+11	Receptionist	A month. Which is quite a long time, all things considered.	12	13	Continue	Continue	0	0	0	0	0	0	0	0	0	0	Check path	Check path	Card Art/Clippy PFP
+12	Receptionist	They were mediocre. Went too easy on the cult and didn't make quotas. Bossman was not happy at all.	14	14	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
+13	Receptionist	They went too hard on the cult and everyone revolted. Greatness is only great if you don't have the people wanting you dead.	14	14	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
+14	Receptionist	The name's Clippy, by the way. I'm your assistant. My job is to help you be the best "Chosen One" you can be.	15	15	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
+15	Clippy	But my bigger job is to make sure this cult doesn't fall apart, got it? You do your job well, and we'll be good friends. Otherwise....	16	16	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
+16	Clippy	Let's just say that despite clashing with the Bossman, he still keeps me around for a reason.	17	18	Best of friends?	You're kinda rude for an assistant.	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
+17	Clippy	That's up to you.	19	19	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
+18	Clippy	I prefer the term "results-oriented" instead of "rude."	19	19	Continue	Continue	0	0	0	0	0	0	0	0	0	0	Highlight KPI	Highlight KPI	Card Art/Clippy PFP
+19	Clippy	Now, here are the KPIs you need to monitor. If any of them hit "0" you're in for a world of trouble.	20	20	Continue	Continue	0	0	0	0	0	0	0	0	0	0	Unhighlight KPI	Unhighlight KPI	Card Art/Clippy PFP
+20	Clippy	But while you're monitoring those KPI's, keep in mind what the Bossman wants or doesn't want.	21	21	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
+21	Clippy	Sometimes you need to listen to him and what he wants. Sometimes, you shouldn't. Use your common sense.	22	22	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
+22	Clippy	Speaking of common sense, here's a stack of Requests, Complaints, and Other Cult Things that needs your attention.	23	23	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
+23	Clippy	Remember to budget your KPIs properly. Good luck. I'll be here if you need any help.	24	24	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
+24	Narrator	You don't get a chance to say anything before Clippy sends you to your office with a stack of papers to sort through.	25	25	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	
+25	Narrator	It's your first day as the Chosen One of this... cult? Surely, it can't be too difficult, can it?	26	26	Continue	Continue	0	0	0	0	0	0	0	0	0	0	Day 1 Scenarios	Day 1 Scenarios	
