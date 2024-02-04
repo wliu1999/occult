@@ -38,12 +38,6 @@ public class cardRenderer : MonoBehaviour
         }
     }
 
-    // Make the card bigger when the player clicks on it.
-    void Update()
-    {
-
-    }
-
     public void renderCard(string titleString, string descriptionString, string left, string right)
     {
         title.SetText(titleString);

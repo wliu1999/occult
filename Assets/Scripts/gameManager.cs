@@ -61,6 +61,9 @@ public class gameManager : MonoBehaviour
     // Store script as variable
     public ImageRenderer imageRenderer;
 
+    //Fail State tracker
+    private bool hasFailed = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,8 +75,7 @@ public class gameManager : MonoBehaviour
 
         updateCardDatabase();
 
-        card = resetCard();
-        cardImage = spawnCardImage();
+        card = spawnCard(2);
 
         //Set KPI default values
         updateKPI("5", "5", "5", "5", "5");
@@ -88,46 +90,7 @@ public class gameManager : MonoBehaviour
         {
             if (Input.GetMouseButton(0) && imageRenderer.isMouseOver)
             {
-                // Set position based on mouse position, and rotation based on position
-                // Note: position is currently based on the user's mouse position
-                // To make things visually make more sense, maybe change some of the below appareance functions to change based on the card's position instead
-                position.x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-                rotation.z = -position.x * 5;
-
-                // Clamp the position of the card
-                //position.x = Mathf.Clamp(position.x, minPosition, maxPosition);
-                rotation.z = Mathf.Clamp(rotation.z, minRotation, maxRotation);
-
-                // Visually move the card to the set position and rotation
-                updateCardPosition(position, rotation);
-
-                // If the user is moving the card to the right, gradually phase in the right hover text.
-                if (position.x < 0 && position.x > minPosition)
-                {
-                    leftHoverText.faceColor = new Color(1, 1, 1, position.x / minPosition);
-                    rightHoverText.faceColor = new Color(0, 0, 0, 0);
-                }
-
-                // If the user is moving the card to the left, gradually phase in the left hover text.
-                if (position.x > 0 && position.x < maxPosition)
-                {
-                    rightHoverText.faceColor = new Color(1, 1, 1, position.x / maxPosition);
-                    leftHoverText.faceColor = new Color(0, 0, 0, 0);
-                }
-
-                // These should change the color when the user is hovering the card past the threshold to swipe. 
-                // For some reason, they're not showing the right color for now. Will have to bugfix later.
-                if (position.x <= -1)
-                {
-                    leftHoverText.faceColor = new Color(1, 1, 1, 1);
-                }
-
-                if (position.x >= 1)
-                {
-                    rightHoverText.faceColor = new Color(1, 1, 1, 1);
-                }
-
-
+                mouseOverCalculations();
             }
             else
             {
@@ -137,43 +100,16 @@ public class gameManager : MonoBehaviour
                     // Swipe Left
                     if (position.x <= minPosition)
                     {
-                        // Update the KPIs and perform any special operations based on the current card.
-                        updateKPI(cardDatabase[cardID, 7], cardDatabase[cardID, 8], cardDatabase[cardID, 9], cardDatabase[cardID, 10], cardDatabase[cardID, 11]);
-                        if (cardDatabase[cardID, 17] != "None")
-                        {
-                            processSpecial(cardDatabase[cardID, 17]);
-                        }
-
-                        //Spawn the next card
-                        nextCard = card.GetComponent<cardRenderer>().SwipeLeft();
-                        tempCard = spawnCard(nextCard);
-                        Destroy(card);
-                        card = tempCard;
-                        tempImage = spawnCardImage();
-                        Destroy(cardImage);
-                        cardImage = tempImage;
-                        nextCard = 0;
-
+                        swipeLeft();
                     }
                     // Swipe Right
                     else if (position.x >= maxPosition)
                     {
-                        // Update the KPIs and perform any special operations based on the current card.
-                        updateKPI(cardDatabase[cardID, 12], cardDatabase[cardID, 13], cardDatabase[cardID, 14], cardDatabase[cardID, 15], cardDatabase[cardID, 16]);
-                        if (cardDatabase[cardID, 18] != "None")
-                        {
-                            processSpecial(cardDatabase[cardID, 18]);
-                        }
-
-                        //Spawn the next card
-                        nextCard = card.GetComponent<cardRenderer>().SwipeRight();
-                        tempCard = spawnCard(nextCard);
-                        Destroy(card);
-                        card = tempCard;
-                        tempImage = spawnCardImage();
-                        Destroy(cardImage);
-                        cardImage = tempImage;
-                        nextCard = 0;
+                        swipeRight();
+                        //for(int i = 0; i < 10; i++)
+                        //{
+                        //    Debug.Log(cardDatabase[cardID, i]);
+                        //}
                     }
                 } else
                 {
@@ -239,6 +175,9 @@ public class gameManager : MonoBehaviour
         rightHoverText.text = cardDatabase[ID,6];
         rightHoverText.faceColor = new Color(0,0,0,0);
         cardID = ID;
+        tempImage = spawnCardImage();
+        Destroy(cardImage);
+        cardImage = tempImage;
         return newCard;
 	}
 
@@ -261,7 +200,84 @@ public class gameManager : MonoBehaviour
         rightHoverText.text = cardDatabase[1, 6];
         rightHoverText.faceColor = new Color(0, 0, 0, 0);
         cardID = 1;
+        tempImage = spawnCardImage();
+        Destroy(cardImage);
+        cardImage = tempImage;
         return newCard;
+    }
+
+    public void mouseOverCalculations()
+    {
+        // Set position based on mouse position, and rotation based on position
+        // Note: position is currently based on the user's mouse position
+        // To make things visually make more sense, maybe change some of the below appareance functions to change based on the card's position instead
+        position.x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+        rotation.z = -position.x * 5;
+
+        // Clamp the position of the card
+        //position.x = Mathf.Clamp(position.x, minPosition, maxPosition);
+        rotation.z = Mathf.Clamp(rotation.z, minRotation, maxRotation);
+
+        // Visually move the card to the set position and rotation
+        updateCardPosition(position, rotation);
+
+        // If the user is moving the card to the right, gradually phase in the right hover text.
+        if (position.x < 0 && position.x > minPosition)
+        {
+            leftHoverText.faceColor = new Color(1, 1, 1, position.x / minPosition);
+            rightHoverText.faceColor = new Color(0, 0, 0, 0);
+        }
+
+        // If the user is moving the card to the left, gradually phase in the left hover text.
+        if (position.x > 0 && position.x < maxPosition)
+        {
+            rightHoverText.faceColor = new Color(1, 1, 1, position.x / maxPosition);
+            leftHoverText.faceColor = new Color(0, 0, 0, 0);
+        }
+
+        // These should change the color when the user is hovering the card past the threshold to swipe. 
+        // For some reason, they're not showing the right color for now. Will have to bugfix later.
+        if (position.x <= -1)
+        {
+            leftHoverText.faceColor = new Color(1, 1, 1, 1);
+        }
+
+        if (position.x >= 1)
+        {
+            rightHoverText.faceColor = new Color(1, 1, 1, 1);
+        }
+    }
+
+    public void swipeLeft()
+    {
+        // Update the KPIs and perform any special operations based on the current card.
+        updateKPI(cardDatabase[cardID, 7], cardDatabase[cardID, 8], cardDatabase[cardID, 9], cardDatabase[cardID, 10], cardDatabase[cardID, 11]);
+        if (cardDatabase[cardID, 17] != "None")
+        {
+            processSpecial(cardDatabase[cardID, 17]);
+        }
+        //Spawn the next card
+        nextCard = card.GetComponent<cardRenderer>().SwipeLeft();
+        tempCard = spawnCard(nextCard);
+        Destroy(card);
+        card = tempCard;
+        nextCard = 0;
+    }
+
+    public void swipeRight()
+    {
+        // Update the KPIs and perform any special operations based on the current card.
+        updateKPI(cardDatabase[cardID, 12], cardDatabase[cardID, 13], cardDatabase[cardID, 14], cardDatabase[cardID, 15], cardDatabase[cardID, 16]);
+        if (cardDatabase[cardID, 18] != "None")
+        {
+            processSpecial(cardDatabase[cardID, 18]);
+        }
+        //Spawn the next card
+        nextCard = card.GetComponent<cardRenderer>().SwipeRight();
+        tempCard = spawnCard(nextCard);
+        Destroy(card);
+        card = tempCard;
+        nextCard = 0;
     }
 
     public void pauseGame()
@@ -344,6 +360,41 @@ public class gameManager : MonoBehaviour
 
         fillAmount = (float)kpi4 / (float)kpiMax;
         zeal.fillAmount = fillAmount;
+        if ((kpi1 >= 10 || kpi1 <= 0 || kpi2 >= 10 || kpi2 <= 0 || kpi3 >= 10 || kpi3 <= 0 || kpi4 >= 10 || kpi4 <= 0) && !hasFailed)
+        {
+            hasFailed = true;
+            loadFailState();
+        }
+    }
+
+    public void setKPI(int i)
+    {
+        float fillAmount;
+        kpi1 = i;
+        kpi2 = i;
+        kpi3 = i;
+        kpi4 = i;
+
+        fillAmount = (float)i / (float)kpiMax;
+        notoriety.fillAmount = fillAmount;
+
+        fillAmount = (float)i / (float)kpiMax;
+        money.fillAmount = fillAmount;
+
+        fillAmount = (float)i / (float)kpiMax;
+        weaponry.fillAmount = fillAmount;
+
+        fillAmount = (float)i / (float)kpiMax;
+        zeal.fillAmount = fillAmount;
+    }
+
+    public void loadFailState()
+    {
+        cardTSV = Resources.Load("Cards/Fail State") as TextAsset;
+        Destroy(card);
+        updateCardDatabase();
+        card = resetCard();
+        darkenEffect.SetActive(true);
     }
 
     public void processSpecial(string special)
@@ -352,6 +403,7 @@ public class gameManager : MonoBehaviour
         switch (special)
         {
             case "None":
+                Debug.Log(special);
                 break;
             case "Mediocrity": 
             case "Ambition":
@@ -378,6 +430,17 @@ public class gameManager : MonoBehaviour
                 Destroy(card);
                 updateCardDatabase();
                 card = resetCard();
+                break;
+            case "Day 1 End":
+                Debug.Log("Day 1 end stuff");
+                break;
+            case "To Beginning":
+                cardTSV = Resources.Load("Cards/Intro") as TextAsset;
+                Destroy(card);
+                updateCardDatabase();
+                card = resetCard();
+                hasFailed = false;
+                setKPI(5);
                 break;
             default:
                 Debug.Log("Current special tag: " + special);

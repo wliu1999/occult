@@ -56,7 +56,7 @@ public class ImageRenderer : MonoBehaviour
             spritePath = "Card Art/Letter";
         }
         Texture2D newTexture = Resources.Load(spritePath) as Texture2D;
-        Sprite newSprite = Sprite.Create(newTexture, new Rect(0, 0, newTexture.width, newTexture.height), new Vector2(0.5f, 0.5f), (float)(newTexture.width/20.48));
+        Sprite newSprite = Sprite.Create(newTexture, new Rect(0, 0, newTexture.width, newTexture.height), new Vector2(0.5f, 0.5f), (float)(Math.Max(newTexture.height/20.48, newTexture.width/20.48)));
         spriteRenderer.sprite = newSprite;
     }
 }

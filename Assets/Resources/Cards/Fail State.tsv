@@ -1,0 +1,6 @@
+ID Number	Card Name	Card Text	ID of Left Card	ID of Right Card	Left hover text	Right hover text	Notoriety Left	Money Left	Weaponry Left	Zeal Left	Favor Left	Notoriety Right	Money Right	Weaponry Right	Zeal Right	Favor Right	Special Left	Special Right	Card Art
+0	Error Indicator	If you're here, there's been an error.	0	0	Close the game and bugfix genius	Why are you still here?	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Dream
+1	At the office	Suddenly, a cat appears on your desk. A very... angry cat.	2	2	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Dream
+2	Bossman	I'm starting to think that you're not so Chosen after all...	3	3	Continue	Continue	0	0	0	0	0	0	0	0	0	2	None	None	Card Art/Dream
+3	Bossman	You're fired!!!	4	4	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Dream
+4	Bossman	As your consciousness fades and you slump onto your desk, you remember a peculiar thought running through your mind...	4	4			0	0	0	0	0	0	0	0	0	0	To Beginning	To Beginning	Card Art/Dream

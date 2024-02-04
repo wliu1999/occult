@@ -1,9 +1,9 @@
 ID Number	Card Name	Card Text	ID of Left Card	ID of Right Card	Left hover text	Right hover text	KPI 1 Left	KPI 2 Left	KPI 3 Left	KPI 4 Left	KPI 5 Left	KPI 1 Right	KPI 2 Right	KPI 3 Right	KPI 4 Right	KPI 5 Right	Special Left	Special Right	Card Art
-0	Error Indicator	If you're here, there's been an error.	0	0	Close the game and bugfix genius	Why are you still here?	0	0	0	0	0	0	0	0	0	0	None	None	None
-1	Start Card	Filler start card	2	2	Start	Card	0	0	0	0	0	0	0	0	0	0	None	None	None
-2	Narrator	You go to the address the Mustached Cat sends to you. It's an inconspicuous building in an inconspucuous part of town.	3	3	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	None
-3	Narrator	Nothing out of the ordinary. Not even when you walk inside to find a bland office lobby.	4	4	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	None
-4	Narrator	The only thing not bland is the woman with paperclip earrings and a clipboard waiting in said lobby.	5	5	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	None
+0	Error Indicator	If you're here, there's been an error.	0	0	Close the game and bugfix genius	Why are you still here?	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Office
+1	Start Card	Filler start card	2	2	Start	Card	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Office
+2	Narrator	You go to the address the Mustached Cat sends to you. It's an inconspicuous building in an inconspucuous part of town.	3	3	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Office
+3	Narrator	Nothing out of the ordinary. Not even when you walk inside to find a bland office lobby.	4	4	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Office
+4	Narrator	The only thing not bland is the woman with paperclip earrings and a clipboard waiting in said lobby.	5	5	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Office
 5	Receptionist	There you are. Bossman's new Chosen One. Let's hope you last longer than the last one.	6	11	What happened to the last one?	How long did the last one last?	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
 6	Receptionist	They didn't know how to balance the scales right.	7	9	Continue	Continue	0	0	0	0	0	0	0	0	0	0	Check path	Check path	Card Art/Clippy PFP
 7	Receptionist	They went too easy on the cult. Didn't make quota. Bossman got angry.	8	8	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
@@ -23,5 +23,5 @@ ID Number	Card Name	Card Text	ID of Left Card	ID of Right Card	Left hover text	R
 21	Clippy	Sometimes you need to listen to him and what he wants. Sometimes, you shouldn't. Use your common sense.	22	22	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
 22	Clippy	Speaking of common sense, here's a stack of Requests, Complaints, and Other Cult Things that needs your attention.	23	23	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
 23	Clippy	Remember to budget your KPIs properly. Good luck. I'll be here if you need any help.	24	24	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Clippy PFP
-24	Narrator	You don't get a chance to say anything before Clippy sends you to your office with a stack of papers to sort through.	25	25	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	
-25	Narrator	It's your first day as the Chosen One of this... cult? Surely, it can't be too difficult, can it?	26	26	Continue	Continue	0	0	0	0	0	0	0	0	0	0	Day 1 Scenarios	Day 1 Scenarios	
+24	Narrator	You don't get a chance to say anything before Clippy sends you to your office with a stack of papers to sort through.	25	25	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Office
+25	Narrator	It's your first day as the Chosen One of this... cult? Surely, it can't be too difficult, can it?	26	26	Continue	Continue	0	0	0	0	0	0	0	0	0	0	Day 1 Scenarios	Day 1 Scenarios	Card Art/Office
