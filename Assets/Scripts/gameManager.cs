@@ -54,6 +54,7 @@ public class gameManager : MonoBehaviour
     public Image money;
     public Image weaponry;
     public Image zeal;
+    public GameObject[] arrows;
 
     // Path chosen
     string path = "none";
@@ -67,7 +68,10 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //darkenEffect.SetActive(false);
+        for (int i = 0; i < arrows.Length; i++)
+        {
+            arrows[i].SetActive(false);
+        }
 
         // Set position and rotation for new card
         position = spawnArea.transform.position;
@@ -425,6 +429,18 @@ public class gameManager : MonoBehaviour
                     card.GetComponent<cardRenderer>().updateLeftCard(cardDatabase[cardID, 4]);
                 }
                 break;
+            case "Highlight KPI":
+                for (int i = 0; i < arrows.Length; i++)
+                {
+                    arrows[i].SetActive(true);
+                }
+                break;
+            case "Unhighlight KPI":
+                for (int i = 0; i < arrows.Length; i++)
+                {
+                    arrows[i].SetActive(false);
+                }
+                break;
             case "Day 1 Scenarios":
                 cardTSV = Resources.Load("Cards/Day 1 Scenarios") as TextAsset;
                 Destroy(card);
@@ -432,7 +448,16 @@ public class gameManager : MonoBehaviour
                 card = resetCard();
                 break;
             case "Day 1 End":
-                Debug.Log("Day 1 end stuff");
+                cardTSV = Resources.Load("Cards/Day 1 End") as TextAsset;
+                Destroy(card);
+                updateCardDatabase();
+                card = resetCard();
+                break;
+            case "Day 2":
+                cardTSV = Resources.Load("Cards/Day 2") as TextAsset;
+                Destroy(card);
+                updateCardDatabase();
+                card = resetCard();
                 break;
             case "To Beginning":
                 cardTSV = Resources.Load("Cards/Intro") as TextAsset;
@@ -441,6 +466,12 @@ public class gameManager : MonoBehaviour
                 card = resetCard();
                 hasFailed = false;
                 setKPI(5);
+                break;
+            case "End Loop":
+                cardTSV = Resources.Load("Cards/End Loop") as TextAsset;
+                Destroy(card);
+                updateCardDatabase();
+                card = resetCard();
                 break;
             default:
                 Debug.Log("Current special tag: " + special);

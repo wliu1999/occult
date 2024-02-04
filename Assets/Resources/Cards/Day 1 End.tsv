@@ -1,0 +1,5 @@
+ID Number	Card Name	Card Text	ID of Left Card	ID of Right Card	Left hover text	Right hover text	Notoriety Left	Money Left	Weaponry Left	Zeal Left	Favor Left	Notoriety Right	Money Right	Weaponry Right	Zeal Right	Favor Right	Special Left	Special Right	Card Art
+0	Error Indicator	If you're here, there's been an error.	0	0	Close the game and bugfix genius	Why are you still here?	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Dream
+1	Start Card	Filler start card	2	2	Start	Card	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Dream
+2	Bossman	Hey Chosen One! Well done so far, the company is still in one piece.	3	3	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Bossman PFP
+3	Bossman	Make sure you keep it up for tomorrow.	3	3	Continue	Continue	0	0	0	0	0	0	0	0	0	0	Day 2	Day 2	Card Art/Bossman PFP

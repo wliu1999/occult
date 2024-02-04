@@ -1,0 +1,7 @@
+ID Number	Card Name	Card Text	ID of Left Card	ID of Right Card	Left hover text	Right hover text	Notoriety Left	Money Left	Weaponry Left	Zeal Left	Favor Left	Notoriety Right	Money Right	Weaponry Right	Zeal Right	Favor Right	Special Left	Special Right	Card Art
+0	Error Indicator	If you're here, there's been an error.	0	0	Close the game and bugfix genius	Why are you still here?	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Dream
+1	Start Card	Filler start card	2	2	Start	Card	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Dream
+2	Bossman	Hey Chosen One! Good job this time around. The cult is thriving, and nothing's blown up!	3	3	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Bossman PFP
+3	Bossman	Unfortunately, I'm going to have to let you go. Don't take it personally, just supernatural reasons your mortal brain wouldn't understand now.	4	4	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Bossman PFP
+4	Bossman	Who knows kiddo, maybe I'll see you around sometime. Now go take a nice nap.	5	5	Continue	Continue	0	0	0	0	0	0	0	0	0	0	None	None	Card Art/Bossman PFP
+5	Laid off?	As Bossman leaps off of your bed and disappears into the darkness, your body feels faint and your vision blurs. The last thing you register within your muddled consciousness is a familiar thought running through your mind...	5	5	Continue	Continue	0	0	0	0	0	0	0	0	0	0	To Beginning	To Beginning	Card Art/Dream
