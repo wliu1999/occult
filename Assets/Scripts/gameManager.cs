@@ -465,6 +465,7 @@ public class gameManager : MonoBehaviour
                 updateCardDatabase();
                 card = resetCard();
                 hasFailed = false;
+                darkenEffect.SetActive(true);
                 setKPI(5);
                 break;
             case "End Loop":
@@ -472,6 +473,7 @@ public class gameManager : MonoBehaviour
                 Destroy(card);
                 updateCardDatabase();
                 card = resetCard();
+
                 break;
             default:
                 Debug.Log("Current special tag: " + special);
